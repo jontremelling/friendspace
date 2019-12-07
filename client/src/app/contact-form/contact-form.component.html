@@ -1,0 +1,10 @@
+<form #userUpdate = "ngForm" (ngSubmit) = "onSubmit(userUpdate.value)">
+    <div class='form-group'>
+        <input type = "text" name = "name" placeholder = "User Name" ngModel>
+    </div>
+    <input
+        type='submit'
+        value='Update User'
+        class='btn btn-primary btn-block'
+    />
+</form>

@@ -1,0 +1,12 @@
+<form>
+    <input
+        type='text'
+        placeholder='Filter Users...'
+        [ngModel]="filter" name="filter" (ngModelChange)="onChange($event)"
+    />
+</form>
+<div class="limited-y">
+    <div *ngFor='let user of users; trackBy: index;'>
+        <app-contact [contact]="user" [canAdd]=true (notifyParentAdd)="getNotificationAdd($event)"></app-contact>
+    </div>
+</div>

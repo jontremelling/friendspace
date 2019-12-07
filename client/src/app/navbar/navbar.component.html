@@ -1,0 +1,22 @@
+<div class='navbar bg-primary'>
+    <h1>
+        <i class={{icon}}></i> FriendSpace
+    </h1>
+    <ul *ngIf="currentUser">
+        <li>Hello {{currentUser}}</li>
+        <li>
+            <a (click)="onLogout()" href='#!'>
+            <i class='fas fa-sign-out-alt'></i>
+            <span class='hide-sm'>Logout</span>
+            </a>
+        </li>
+    </ul>
+    <ul *ngIf="!currentUser">
+        <li>
+            <a href='/register'>Register</a>
+        </li>
+        <li>
+            <a href='/login'>Login</a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,23 @@
+<div class='card bg-light'>
+    <h3 class='text-primary text-left'>
+      {{contact.name}}
+    </h3>
+    <ul class='list' *ngIf="contact.email">
+        <li>
+          <i class='fas fa-envelope-open'></i> {{contact.email}}
+        </li>
+    </ul>
+    <p *ngIf="deletable">
+        <button class='btn btn-danger btn-sm' (click)="onDelete()">
+          Delete
+        </button>
+    </p>
+    <p *ngIf="canAdd">
+        <button
+          class='btn btn-dark btn-sm'
+          (click)="onAdd()"
+        >
+          Add
+        </button>
+    </p>
+</div>
