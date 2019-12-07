@@ -2,6 +2,9 @@
   "name": "friendspace",
   "version": "1.0.0",
   "description": "Contact manager app",
+  "engines": {
+    "node": "11.11.0"
+  },
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
