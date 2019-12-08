@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div *ngFor="let error of errors" class="alert alert-danger">
+        <i class='fa fa-info-circle'></i> {{error}}
+    </div>
+
+    <div *ngFor="let message of messages" class="alert alert-success">
+        <i class='fa fa-info-circle'></i> {{message}}
+    </div>
+    <router-outlet></router-outlet>
+</div>
