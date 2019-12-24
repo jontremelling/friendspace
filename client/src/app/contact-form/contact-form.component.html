@@ -2,15 +2,14 @@
     <div class='form-group'>
         <input type = "text" name = "name" placeholder = "User Name" ngModel>
     </div>
-    <input
-        type='submit'
-        value='Update User'
-        class='btn btn-primary btn-block'
-    />
-    <input
-        type='button'
-        value='Delete Account'
-        class='btn btn-danger btn-block'
+    <div class="button-container">
+        <button type="button" (click)="cancelEdit()" class="btn btn-danger image-button">Cancel</button>
+        <button type="submit" class="btn btn-success image-button">Update</button>
+    </div>
+    <div class="button-container">
+    <button
+        class="btn btn-danger"
         (click)='deleteAccount()'
-    />
+    >Delete Account</button>
+    </div>
 </form>

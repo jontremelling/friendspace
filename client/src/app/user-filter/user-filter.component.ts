@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user-service';
+import { Observable } from 'rxjs';
+import {UserStore} from '../models/userstore';
+import {User} from '../models/user';
+import {select, Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-user-filter',
@@ -7,19 +11,14 @@ import { UserService } from '../user-service';
   styleUrls: ['./user-filter.component.css']
 })
 export class UserFilterComponent implements OnInit {
-  users: Array<string>;
   filter: string;
+  user_store: Observable<UserStore>;
+  users: Array<User>;
+  
 
-  constructor(private userService: UserService) {
-    userService.getFilteredUsers()
-    .subscribe(users => {
-        this.users = users
-    });
-
-    userService.getContacts()
-      .subscribe(contacts => {
-        this.userService.filterUsers(this.filter);
-    });
+  constructor(private store: Store<{ users: UserStore }>, private userService: UserService) {
+    this.user_store = store.pipe(select('users'));
+    this.user_store.subscribe(res => this.users = res.filtered_users);
    }
 
   ngOnInit() {
@@ -31,8 +30,8 @@ export class UserFilterComponent implements OnInit {
     this.userService.filterUsers(filter);
   }
 
-  getNotificationAdd(evt) {
-    this.userService.addContact(evt);
+  getNotification(contact) {
+    this.userService.addContact(contact);
   }
 
 }

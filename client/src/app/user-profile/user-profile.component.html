@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <div class="card">
+            <div class="avatar-container">
+                <img [src]="preview || currentUser.avatar" alt="John" class="avatar">
+                <div class="avatar-overlay">
+                <span class="avatar-icon" title="User Profile" (click)="edit()">
+                  <i class="fa fa-pencil"></i>
+                </span>
+                </div>
+              </div>
+            <!-- File Input -->
+            <div class="form-group" *ngIf="edit_mode">
+                <input type="file" (change)="uploadFile($event)">
+            </div>
+            <div class="button-container" *ngIf="edit_mode">
+                <button type="button" (click)="cancelImageUpload()" class="btn btn-danger image-button">Cancel</button>
+                <button type="submit" class="btn btn-success image-button">Save</button>
+            </div>
+            <table>
+                <tbody>
+                    <tr><td><h2>{{currentUser.name}}</h2></td><td><span (click)="editProfileInformation()">
+                        <i class="fa fa-pencil"></i>
+                      </span></td></tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td class="right">{{currentUser.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-contact-form *ngIf="edit_profile" (notifyParent)="getNotification()"></app-contact-form>
+        </div>
+      </form>
+    </div>
+  </div>

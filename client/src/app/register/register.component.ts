@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
     onSubmit(data) {
       let self = this;
       if(data.password !== data.confirmPassword) {
-        this.userService.setErrors(["Passwords don't match"]);
+        this.userService.setError(500, "Passwords don't match");
       } else {
         this.userService.register(data.name, data.email, data.password).then(res => {
             if(!res) 

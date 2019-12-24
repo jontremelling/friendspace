@@ -1,5 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { UserService } from './user-service';
+import { Observable } from 'rxjs';
+import {MessageStore} from './models/messagestore';
+import {Message} from './models/message';
+import {select, Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-root',
@@ -8,26 +12,15 @@ import { UserService } from './user-service';
 })
 export class AppComponent {
   title = 'friendspace';
-  errors: Array<string>;
-  messages: Array<string>;
+  message_store: Observable<MessageStore>;
+  errors: Array<Message>;
+  messages: Array<Message>;
   errorTimer;
   messageTimer;
 
-    constructor(private userService: UserService) { 
-        userService.getErrors().subscribe(errors => {
-            this.errors = errors;
-            let self = this;
-            this.errorTimer = setTimeout(() => {
-                self.errors = [];
-            }, 3000);
-        });
-
-        userService.getMessages().subscribe(messages => {
-            this.messages = messages;
-            let self = this;
-            this.messageTimer = setTimeout(() => {
-                self.messages = [];
-            }, 3000);
-        });
+    constructor(private store: Store<{ messages: MessageStore }>, private userService: UserService) { 
+        this.message_store = store.pipe(select('messages'));
+        this.message_store.subscribe(res => this.errors = res.errors);
+        this.message_store.subscribe(res => this.messages = res.messages);
     }
 }

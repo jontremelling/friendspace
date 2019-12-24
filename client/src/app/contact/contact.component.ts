@@ -8,6 +8,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 export class ContactComponent implements OnInit {
 
     @Input() contact: any;
+    @Input() index: number;
     @Input() deletable: boolean;
     @Input() canAdd: boolean;
     @Output() notifyParent: EventEmitter<any> = new EventEmitter();
@@ -19,10 +20,10 @@ export class ContactComponent implements OnInit {
     }
 
     onDelete() {
-        this.notifyParent.emit(this.contact._id);
+        this.notifyParent.emit(this.contact);
     }
 
     onAdd() {
-        this.notifyParentAdd.emit(this.contact._id);
+        this.notifyParentAdd.emit(this.contact);
     }
 }

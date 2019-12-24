@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -8,6 +9,35 @@ const { check, validationResult } = require('express-validator/check');
 
 const User = require('../models/User');
 const Contact = require('../models/Contact');
+
+// Multer File upload settings
+const DIR = './public/';
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, DIR);
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(' ').join('-');
+    cb(null, fileName)
+  }
+});
+
+// Multer Mime Type Validation
+var upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+    }
+  }
+});
 
 // @route     POST api/users
 // @desc      Regiter a user
@@ -79,12 +109,12 @@ router.post(
 // @desc      Update user
 // @access    Private
 router.put('/', auth, async (req, res) => { 
-    const { name } = req.body;
-  
-    if(!name) return res.status(404).json({ msg: 'Please supply a username' });
+    // const { name } = req.body;
+    const userFields = req.body;
+    // if(!userFields.name) return res.status(404).json({ msg: 'Please supply a username' });
 
-    const userFields = {};
-    userFields.name = name;
+    
+    // userFields.name = name;
   
     try {
       let user = await User.findById(req.user.id);
@@ -149,5 +179,21 @@ router.get('/', auth, async (req, res) => {
       res.status(500).send('Server Error');
     }
 });
+
+// POST User
+router.post('/update-profile', upload.single('avatar'), async (req, res, next) => {
+    const user = await User.findById(req.body.id);
+    user.avatar = 'http://localhost:5000/' + req.file.filename;
+    user.save().then(result => {
+      res.status(201).json({
+        message: "User registered successfully!"
+      })
+    }).catch(err => {
+      console.log(err),
+        res.status(500).json({
+          error: err
+        });
+    })
+  })
 
 module.exports = router;

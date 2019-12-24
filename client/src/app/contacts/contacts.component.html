@@ -1,3 +1,3 @@
-<div *ngFor='let contact of contacts; trackBy: index;'>
+<div *ngFor="let contact of contacts">
     <app-contact [contact]="contact" [deletable]=true (notifyParent)="getNotification($event)"></app-contact>
 </div>

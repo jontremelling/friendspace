@@ -31,6 +31,7 @@ app.use((req, res, next) => {
 app.use('/api/users', require('./routes/users'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/contacts', require('./routes/contacts'));
+app.use(express.static('public'))
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {
@@ -45,3 +46,15 @@ if (process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+
+// var http = require('http');
+
+// var nStatic = require('node-static');
+
+// var fileServer = new nStatic.Server('./public');
+
+// http.createServer(function (req, res) {
+    
+//     fileServer.serve(req, res);
+
+// }).listen(5000);

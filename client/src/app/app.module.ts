@@ -15,6 +15,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ContactComponent } from './contact/contact.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+
+import { StoreModule } from '@ngrx/store';
+import { MessageReducer } from './reducers/message.reducer';
+import { UserReducer } from './reducers/user.reducer';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,13 +32,16 @@ import { ContactComponent } from './contact/contact.component';
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    ContactComponent
+    ContactComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({ messages: MessageReducer, users: UserReducer })
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

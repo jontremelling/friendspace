@@ -26,7 +26,9 @@
     "express-validator": "^5.3.1",
     "font-awesome": "^4.7.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.7.13"
+    "mongoose": "^5.7.13",
+    "multer": "^1.4.2",
+    "node-static": "^0.7.11"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.803.20",

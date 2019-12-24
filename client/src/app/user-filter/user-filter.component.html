@@ -6,7 +6,7 @@
     />
 </form>
 <div class="limited-y">
-    <div *ngFor='let user of users; trackBy: index;'>
-        <app-contact [contact]="user" [canAdd]=true (notifyParentAdd)="getNotificationAdd($event)"></app-contact>
+    <div *ngFor="let user of users">
+        <app-contact [contact]="user" [canAdd]=true (notifyParentAdd)="getNotification($event)"></app-contact>
     </div>
 </div>

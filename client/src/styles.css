@@ -229,6 +229,13 @@ img {
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
+  position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 500px;
+    min-height: 50px;
+    margin-left: -250px;
+    margin-top: -50px;
 }
 
 .btn-primary,
@@ -337,16 +344,18 @@ button {
   padding: 0 2rem;
 }
 
-.form-container h1,
-h2,
-h3 {
-  text-align: center;
+table {
+    width: 100%;
+    margin-top: 10px;
 }
 
 table th,
 table td {
-  padding: 1rem;
   text-align: left;
+}
+
+table td.right {
+    text-align: right;
 }
 
 table th {
@@ -372,14 +381,12 @@ table th {
 
 .navbar a {
   color: #fff;
-  padding: 0.45rem;
   margin: 0 0.25rem;
   cursor: pointer;
 }
 
 .navbar a:hover {
   color: var(--light-color);
-  text-decoration: underline;
 }
 
 .navbar .welcome span {
@@ -447,3 +454,90 @@ table th {
     height: 450px;
     overflow-y: scroll;
 }
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    text-align: left;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+
+  .button-container {
+      width: 100%;
+      margin-bottom: 10px;
+  }
+
+  .image-button {
+    width: 46%;
+    margin-left: 2%;
+    margin-right: 0;
+  }
+
+  .avatar-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .avatar {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .avatar-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    opacity: 0;
+    transition: .3s ease;
+    background-color: red;
+  }
+  
+  .avatar-container:hover .avatar-overlay {
+    opacity: 1;
+  }
+  
+  .avatar-icon {
+    color: white;
+    font-size: 10px;
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .fa-pencil:hover {
+    color: #eee;
+  }
+
+  i:hover {
+      cursor: pointer;
+  }
