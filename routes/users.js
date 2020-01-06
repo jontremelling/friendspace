@@ -115,12 +115,7 @@ router.post(
 // @desc      Update user
 // @access    Private
 router.put("/", auth, async (req, res) => {
-  // const { name } = req.body;
   const userFields = req.body;
-  // if(!userFields.name) return res.status(404).json({ msg: 'Please supply a username' });
-
-  // userFields.name = name;
-
   try {
     let user = await User.findById(req.user.id);
 
@@ -159,7 +154,7 @@ router.delete("/:id", auth, async (req, res) => {
 
 // @route     GET api/users
 // @desc      Get all users
-// @access    Public
+// @access    Private
 router.get("/", auth, async (req, res) => {
   try {
     const users = await User.find()
@@ -175,7 +170,9 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
-// POST User
+// @route     POST api/update-profile
+// @desc      Update profile picture
+// @access    Private
 router.post(
   "/update-profile",
   upload.single("avatar"),
@@ -186,7 +183,7 @@ router.post(
       .save()
       .then(result => {
         res.status(201).json({
-          message: "User registered successfully!"
+          message: "User updated successfully!"
         });
       })
       .catch(err => {
