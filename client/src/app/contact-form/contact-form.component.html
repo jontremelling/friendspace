@@ -1,15 +1,20 @@
-<form #userUpdate = "ngForm" (ngSubmit) = "onSubmit(userUpdate.value)">
-    <div class='form-group'>
-        <input type = "text" name = "name" placeholder = "User Name" ngModel>
-    </div>
-    <div class="button-container">
-        <button type="button" (click)="cancelEdit()" class="btn btn-danger image-button">Cancel</button>
-        <button type="submit" class="btn btn-success image-button">Update</button>
-    </div>
-    <div class="button-container">
+<form #userUpdate="ngForm" (ngSubmit)="onSubmit(userUpdate.value)">
+  <div class="form-group">
+    <input type="text" name="name" placeholder="User Name" ngModel />
+  </div>
+  <div class="button-container">
     <button
-        class="btn btn-danger"
-        (click)='deleteAccount()'
-    >Delete Account</button>
-    </div>
+      type="button"
+      (click)="cancelEdit()"
+      class="btn btn-danger image-button"
+    >
+      Cancel
+    </button>
+    <button type="submit" class="btn btn-success image-button">Update</button>
+  </div>
+  <div class="button-container">
+    <button class="btn btn-danger" (click)="deleteAccount()">
+      Delete Account
+    </button>
+  </div>
 </form>

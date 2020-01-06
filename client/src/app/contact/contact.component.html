@@ -1,23 +1,26 @@
-<div class='card bg-light'>
-    <h3 class='text-primary text-left'>
-      {{contact.name}}
-    </h3>
-    <ul class='list' *ngIf="contact.email">
-        <li>
-          <i class='fa fa-envelope-open'></i> {{contact.email}}
-        </li>
-    </ul>
-    <p *ngIf="deletable">
-        <button class='btn btn-danger btn-sm' (click)="onDelete()">
-          Delete
-        </button>
-    </p>
-    <p *ngIf="canAdd">
-        <button
-          class='btn btn-dark btn-sm'
-          (click)="onAdd()"
-        >
-          Add
-        </button>
-    </p>
+<div class="square">
+  <div class="avatar-container">
+    <img [src]="contact.avatar || 'assets/img/unknown.png'" class="avatar" />
+    <div class="avatar-overlay">
+      <span
+        class="avatar-icon"
+        title="User Profile"
+        (click)="onDelete()"
+        *ngIf="deletable"
+      >
+        <i class="fa fa-close"></i>
+      </span>
+      <span
+        class="avatar-icon"
+        title="User Profile"
+        (click)="onAdd()"
+        *ngIf="canAdd"
+      >
+        <i class="fa fa-plus"></i>
+      </span>
+    </div>
+  </div>
+  <a class="contact-name" href="/profile/{{ contact._id || contact.id }}">{{
+    contact.name
+  }}</a>
 </div>

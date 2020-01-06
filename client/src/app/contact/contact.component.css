@@ -1,0 +1,22 @@
+.square {
+  width: 31%;
+  color: #fff;
+  text-align: center;
+  background: #000;
+  padding: 1%;
+  margin: 1%;
+  float: left;
+}
+
+.responsive {
+  width: 100%;
+  height: auto;
+}
+
+.contact-name {
+  color: white;
+}
+
+.contact-name:hover {
+  cursor: pointer;
+}

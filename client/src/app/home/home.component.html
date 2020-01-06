@@ -1,9 +1,4 @@
-<div class='grid-2'>
-    <div>
-        <h2>My Contacts:</h2>
-        <div class="limited-y">
-            <app-contacts></app-contacts>
-        </div>
-    </div>
-    <app-user-filter></app-user-filter>
+<div class="grid-2">
+  <app-user-filter></app-user-filter>
+  <app-user-contacts [currentUser]="currentUser"></app-user-contacts>
 </div>

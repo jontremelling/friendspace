@@ -1,36 +1,99 @@
-<div class="container">
-    <div class="row">
-      <form [formGroup]="form" (ngSubmit)="submitForm()">
-        <div class="card">
-            <div class="avatar-container">
-                <img [src]="preview || currentUser.avatar" alt="John" class="avatar">
-                <div class="avatar-overlay">
-                <span class="avatar-icon" title="User Profile" (click)="edit()">
+<div class="container" *ngIf="currentUser">
+  <div class="column">
+    <form [formGroup]="form" (ngSubmit)="submitForm()">
+      <div class="card">
+        <div class="avatar-container">
+          <img
+            [src]="preview || currentUser.avatar || 'assets/img/unknown.png'"
+            alt="John"
+            class="avatar"
+          />
+          <div class="avatar-overlay">
+            <span class="avatar-icon" title="User Profile" (click)="edit()">
+              <i class="fa fa-pencil"></i>
+            </span>
+          </div>
+        </div>
+        <!-- File Input -->
+        <div class="form-group" *ngIf="edit_mode">
+          <input type="file" (change)="uploadFile($event)" />
+        </div>
+        <div class="button-container" *ngIf="edit_mode">
+          <button
+            type="button"
+            (click)="cancelImageUpload()"
+            class="btn btn-danger image-button"
+          >
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-success image-button">
+            Save
+          </button>
+        </div>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <h2>{{ currentUser.name }}</h2>
+              </td>
+              <td>
+                <span (click)="editProfileInformation()">
                   <i class="fa fa-pencil"></i>
                 </span>
-                </div>
-              </div>
-            <!-- File Input -->
-            <div class="form-group" *ngIf="edit_mode">
-                <input type="file" (change)="uploadFile($event)">
-            </div>
-            <div class="button-container" *ngIf="edit_mode">
-                <button type="button" (click)="cancelImageUpload()" class="btn btn-danger image-button">Cancel</button>
-                <button type="submit" class="btn btn-success image-button">Save</button>
-            </div>
-            <table>
-                <tbody>
-                    <tr><td><h2>{{currentUser.name}}</h2></td><td><span (click)="editProfileInformation()">
-                        <i class="fa fa-pencil"></i>
-                      </span></td></tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td class="right">{{currentUser.email}}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <app-contact-form *ngIf="edit_profile" (notifyParent)="getNotification()"></app-contact-form>
-        </div>
-      </form>
+              </td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td class="right" *ngIf="!currentUser.hideUserEmail">
+                {{ currentUser.email }}
+                <i
+                  class="fa fa-close"
+                  *ngIf="currentUser.id === loggedInUser.id"
+                  (click)="hideUserEmail()"
+                ></i>
+              </td>
+              <td class="right" *ngIf="currentUser.hideUserEmail">
+                Email hidden.
+                <i
+                  class="fa fa-plus"
+                  *ngIf="currentUser.id === loggedInUser.id"
+                  (click)="showUserEmail()"
+                ></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <app-contact-form
+          *ngIf="edit_profile"
+          (notifyParent)="getNotification()"
+        ></app-contact-form>
+      </div>
+    </form>
+    <h3>Contacts:</h3>
+    <div class="limited-y">
+      <app-contacts [currentUser]="currentUser"></app-contacts>
     </div>
   </div>
+  <div class="main">
+    <div class="card">
+      <input #post type="text" placeholder="Write something here..." />
+      <button (click)="newPost(post.value)">Post</button>
+    </div>
+    <div
+      class="card card-left flex-row flex-wrap"
+      *ngFor="let post of currentUser.posts"
+    >
+      <div>
+        <div class="poster">
+          <img
+            [src]="post.poster.avatar || 'assets/img/unknown.png'"
+            class="post-container"
+          />
+          <h3>{{ post.poster.name }}</h3>
+        </div>
+        {{ post.post }}
+        <p class="date-field">{{ post.date | date: "medium" }}</p>
+      </div>
+    </div>
+  </div>
+</div>

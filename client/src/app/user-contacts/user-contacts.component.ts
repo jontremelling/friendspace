@@ -1,19 +1,17 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { UserService } from "../user-service";
-
 import { Observable } from "rxjs";
-
 import { UserStore } from "../models/userstore";
-import { Contact } from "../models/contact";
 import { User } from "../models/user";
+import { Contact } from "../models/contact";
 import { select, Store } from "@ngrx/store";
 
 @Component({
-  selector: "app-contacts",
-  templateUrl: "./contacts.component.html",
-  styleUrls: ["./contacts.component.css"]
+  selector: "app-user-contacts",
+  templateUrl: "./user-contacts.component.html",
+  styleUrls: ["./user-contacts.component.css"]
 })
-export class ContactsComponent implements OnInit {
+export class UserContactsComponent implements OnInit {
   user_store: Observable<UserStore>;
   contacts: Array<Contact>;
   private user: User;
@@ -37,8 +35,4 @@ export class ContactsComponent implements OnInit {
   }
 
   ngOnInit() {}
-
-  getNotification(contact) {
-    this.userService.deleteContact(contact);
-  }
 }

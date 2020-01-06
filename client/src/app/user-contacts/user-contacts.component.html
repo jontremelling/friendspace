@@ -1,0 +1,21 @@
+<div class="limited-y">
+  <h1>News Feed</h1>
+  <div *ngFor="let contact of contacts">
+    <div
+      class="card card-left flex-row flex-wrap"
+      *ngFor="let post of contact.posts"
+    >
+      <div>
+        <div class="poster">
+          <img
+            [src]="post.poster.avatar || 'assets/img/unknown.png'"
+            class="post-container"
+          />
+          <h3>{{ post.poster.name }}</h3>
+        </div>
+        {{ post.post }}
+        <p class="date-field">{{ post.date | date: "medium" }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,26 +1,6 @@
-.column {
-  width: 30%;
-  text-align: center;
-  float: left;
-}
-
-.main {
-  width: 60%;
-  float: left;
-}
-
-.card {
-  width: 98%;
-  max-width: 98%;
-  margin-left: 2%;
-}
-
-.avatar-icon:hover {
-  cursor: pointer;
-}
-
-.card-left {
-  float: left;
+.limited-y {
+  height: 450px;
+  overflow-y: scroll;
 }
 
 .card-left {

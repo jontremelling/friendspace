@@ -1,28 +1,27 @@
-<div class='form-container'>
-    <h1>
-        Account <span class='text-primary'>Register</span>
-    </h1>
-    <form #userregister = "ngForm" (ngSubmit) = "onSubmit(userregister.value)">
-        <div class='form-group'>
-            <label htmlFor='name'>Name</label>
-            <input type = "text" name = "name" placeholder = "Name" ngModel>
-        </div>
-        <div class='form-group'>
-            <label htmlFor='email'>Email Address</label>
-            <input type = "text" name = "email" placeholder = "Email" ngModel>
-        </div>
-        <div class='form-group'>
-            <label htmlFor='password'>Password</label>
-            <input type = "password" name = "password" placeholder = "Password" ngModel>
-        </div>
-        <div class='form-group'>
-            <label htmlFor='confirmPassword'>Confirm Password</label>
-            <input type = "password" name = "confirmPassword" placeholder = "Confirm Password" ngModel>
-        </div>
-        <input
-            type='submit'
-            value='Register'
-            class='btn btn-primary btn-block'
-        />
-    </form>
+<div class="form-container">
+  <h1>Account <span class="text-primary">Register</span></h1>
+  <form #userregister="ngForm" (ngSubmit)="onSubmit(userregister.value)">
+    <div class="form-group">
+      <label htmlFor="name">Name</label>
+      <input type="text" name="name" placeholder="Name" ngModel />
+    </div>
+    <div class="form-group">
+      <label htmlFor="email">Email Address</label>
+      <input type="text" name="email" placeholder="Email" ngModel />
+    </div>
+    <div class="form-group">
+      <label htmlFor="password">Password</label>
+      <input type="password" name="password" placeholder="Password" ngModel />
+    </div>
+    <div class="form-group">
+      <label htmlFor="confirmPassword">Confirm Password</label>
+      <input
+        type="password"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+        ngModel
+      />
+    </div>
+    <input type="submit" value="Register" class="btn btn-primary btn-block" />
+  </form>
 </div>

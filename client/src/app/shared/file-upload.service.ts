@@ -1,24 +1,28 @@
-import { Injectable } from '@angular/core';
-import { User } from './user';
-import { Observable, throwError } from 'rxjs';
-import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { User } from "./user";
+import { Observable, throwError } from "rxjs";
+import {
+  HttpHeaders,
+  HttpErrorResponse,
+  HttpClient
+} from "@angular/common/http";
 
-import { UserService } from '../user-service';
+import { UserService } from "../user-service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 export class FileUploadService {
-
   baseURL = "http://localhost:5000/api/users";
-  headers = new HttpHeaders().set('Content-Type', 'application/json').set('x-auth-token', localStorage.token);
+  headers = new HttpHeaders()
+    .set("Content-Type", "application/json")
+    .set("x-auth-token", localStorage.token);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   // Get Users
   getUsers() {
-    return this.http.get(this.baseURL)
+    return this.http.get(this.baseURL);
   }
 
   // Create User
@@ -29,13 +33,13 @@ export class FileUploadService {
 
     return this.http.post<User>(`${this.baseURL}/update-profile`, formData, {
       reportProgress: true,
-      observe: 'events'
-    })
+      observe: "events"
+    });
   }
 
-  // Error handling 
+  // Error handling
   errorMgmt(error: HttpErrorResponse) {
-    let errorMessage = '';
+    let errorMessage = "";
     if (error.error instanceof ErrorEvent) {
       // Get client-side error
       errorMessage = error.error.message;
@@ -46,5 +50,4 @@ export class FileUploadService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
-
 }

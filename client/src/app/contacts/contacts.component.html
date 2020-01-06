@@ -1,3 +1,7 @@
 <div *ngFor="let contact of contacts">
-    <app-contact [contact]="contact" [deletable]=true (notifyParent)="getNotification($event)"></app-contact>
+  <app-contact
+    [contact]="contact"
+    [deletable]="true"
+    (notifyParent)="getNotification($event)"
+  ></app-contact>
 </div>

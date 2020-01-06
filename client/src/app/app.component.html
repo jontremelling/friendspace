@@ -1,11 +1,15 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <div *ngIf="errors.length > 0" class="alert alert-danger">
-        <p *ngFor="let error of errors"><i class='fa fa-info-circle'></i> {{error.message}}</p>
-    </div>
+  <div *ngIf="errors.length > 0" class="alert alert-danger">
+    <p *ngFor="let error of errors">
+      <i class="fa fa-info-circle"></i> {{ error.message }}
+    </p>
+  </div>
 
-    <div *ngIf="messages.length > 0" class="alert alert-success">
-        <p *ngFor="let message of messages"><i class='fa fa-info-circle'></i> {{message.message}}</p>
-    </div>
-    <router-outlet></router-outlet>
+  <div *ngIf="messages.length > 0" class="alert alert-success">
+    <p *ngFor="let message of messages">
+      <i class="fa fa-info-circle"></i> {{ message.message }}
+    </p>
+  </div>
+  <router-outlet></router-outlet>
 </div>
