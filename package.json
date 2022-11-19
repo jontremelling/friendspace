@@ -31,7 +31,7 @@
     "node-static": "^0.7.11"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.803.20",
+    "@angular-devkit/build-angular": "^15.0.0",
     "@angular/cli": "^8.3.20",
     "concurrently": "^4.1.2",
     "nodemon": "^1.19.3"
